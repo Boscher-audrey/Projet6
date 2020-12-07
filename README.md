@@ -10,5 +10,5 @@ Démarrer `ng serve` depuis la racine du projet pour avoir accès au serveur de 
 
 Démarrer `node server` depuis le dossier `backend` pour lancer la connection à la base de données MongoDB.
 
-Rendez-vous sur `http://localhost:4200/`. L'application va se recharger automatiquement si vous modifiez un fichier source.
+Rendez-vous sur `http://localhost:4200/`.
 
