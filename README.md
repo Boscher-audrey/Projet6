@@ -6,5 +6,9 @@ Pour faire fonctionner le projet, vous devez installer node-sass à part.
 
 ## Development server
 
-Démarrer `ng serve` pour avoir accès au serveur de développement. Rendez-vous sur `http://localhost:4200/`. L'application va se recharger automatiquement si vous modifiez un fichier source.
-# Projet6
+Démarrer `ng serve` depuis la racine du projet pour avoir accès au serveur de développement.
+
+Démarrer `node server` depuis le dossier `backend` pour lancer la connection à la base de données MongoDB.
+
+Rendez-vous sur `http://localhost:4200/`. L'application va se recharger automatiquement si vous modifiez un fichier source.
+
