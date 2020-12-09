@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const path = require('path');
 const cors = require('cors');
 
+require('dotenv').config();
+
 const saucesRoutes = require('./routes/sauces');
 const userRoutes = require('./routes/user');
 
@@ -11,24 +13,8 @@ const app = express();
 
 app.use(cors());
 
-/*
 
-mongodb+srv://<username>:<password>@projet6-audrey-boscher.t9pow.mongodb.net/Piquante?retryWrites=true&w=majority
-
-Informations d'accès pour supprimer ou modifier des tables :
-<username> => Employees
-<password> => ky5VcAY4odIvVqjC
-
-Informations d'accès pour éditer le contenu de la DB :
-<username> => Sophie
-<password> => x4aZ3t9XFvzk74To
-
- */
-
-const usernameMongoDB = "Sophie";
-const passwordMongoDB = "x4aZ3t9XFvzk74To";
-mongoose.connect('mongodb+srv://'+usernameMongoDB+':'+passwordMongoDB+'@projet6-audrey-boscher.t9pow.mongodb.net/Piquante?retryWrites=true&w=majority',
-    {
+mongoose.connect(process.env.DB_URL_ADMIN, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
