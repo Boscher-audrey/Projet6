@@ -5,6 +5,8 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../models/User');
 
+const CryptoJS = require("crypto-js");
+
 exports.signup = (req, res, next) => {
     const emailUnsecure = req.body.email,
         regex_email = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+?\.[a-zA-Z0-9-]+$/;
@@ -12,7 +14,7 @@ exports.signup = (req, res, next) => {
         message = "";
 
     if (regex_email.test(emailUnsecure) === true) {
-        emailSecure = emailUnsecure;
+        emailSecure = CryptoJS.AES.encrypt(emailUnsecure, 'secret key 123').toString();
         message = "L'utilisateur a bien été créé !";
     } else {
         message = "Veuillez saisir une adresse email valide !";
@@ -32,7 +34,10 @@ exports.signup = (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
-    User.findOne({email: req.body.email})
+    const emailBody = req.body.email;
+    var bytes  = CryptoJS.AES.decrypt(emailBody, 'secret key 123');
+    var emailOriginal = bytes.toString(CryptoJS.enc.Utf8);
+    User.findOne({email: emailOriginal})
         .then(user => {
             if (!user) {
                 return res.status(401).json({error: "L'utilisateur n'a pas été trouvé !"});
