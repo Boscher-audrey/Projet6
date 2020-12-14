@@ -4,7 +4,10 @@ const mongoose = require('mongoose');
 const path = require('path');
 const cors = require('cors');
 
-require('dotenv').config();
+const dotenv = require('dotenv');
+dotenv.config();
+const url = process.env.DB_URL_EMPLOYEES;
+
 
 const saucesRoutes = require('./routes/sauces');
 const userRoutes = require('./routes/user');
@@ -13,8 +16,7 @@ const app = express();
 
 app.use(cors());
 
-
-mongoose.connect(process.env.DB_URL_ADMIN, {
+mongoose.connect(url, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
